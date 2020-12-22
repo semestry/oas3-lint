@@ -1,0 +1,16 @@
+name: 'Lint Open API Specification 3'
+author: 'Eveoh'
+description: 'Lint Open API Specification 3 files'
+inputs:
+  spec:
+    description: 'Path of the Open API Specification 3 file'
+    required: true
+  token:
+    description: "Github token for posting the check run. Can be acquired using {{ secrets.GITHUB_TOKEN }}"
+    required: true
+  ruleset:
+    description: "Path of the ruleset file"
+    required: false
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

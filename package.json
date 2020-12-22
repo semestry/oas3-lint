@@ -1,0 +1,26 @@
+{
+  "name": "@eveoh/oas3-lint",
+  "version": "1.0.0",
+  "description": "GitHub Action for linting Open API Specification 3 files",
+  "author": "Eveoh",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eveoh/oas3-lint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eveoh/oas3-lint/issues"
+  },
+  "homepage": "https://github.com/eveoh/oas3-lint",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0",
+    "@stoplight/spectral": "^5.7.2"
+  },
+  "scripts": {
+    "build": "ncc build index.js --license licenses.txt"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.26.1"
+  }
+}
