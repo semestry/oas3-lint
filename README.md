@@ -1,5 +1,5 @@
 # oas3-lint
-GitHub Action for linting Open API Specification 3 files using [Spectral](https://github.com/stoplightio/spectral).
+GitHub Action for linting OpenAPI Specification 3 files using [Spectral](https://github.com/stoplightio/spectral).
 
 ## Usage
 ```yaml
@@ -21,7 +21,7 @@ jobs:
 ### Options
 
 #### spec (required)
-The path to the specification file (Open API Specification3, YAML) that should be linted.
+The path to the specification file (OpenAPI Specification 3, YAML) that should be linted.
 
 *Example:*
 ```yaml

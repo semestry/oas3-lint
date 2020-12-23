@@ -1,9 +1,9 @@
-name: 'Lint Open API Specification 3'
+name: 'Lint OpenAPI Specification 3'
 author: 'Eveoh'
-description: 'Lint Open API Specification 3 files'
+description: 'Lint OpenAPI Specification 3 files'
 inputs:
   spec:
-    description: 'Path of the Open API Specification 3 file'
+    description: 'Path of the OpenAPI Specification 3 file'
     required: true
   token:
     description: "Github token for posting the check run. Can be acquired using {{ secrets.GITHUB_TOKEN }}"
