@@ -14,7 +14,7 @@
   "homepage": "https://github.com/eveoh/oas3-lint",
   "dependencies": {
     "@actions/core": "^1.6.0",
-    "@actions/github": "^5.0.0",
+    "@actions/github": "^5.0.1",
     "@stoplight/spectral": "^6.1.0"
   },
   "scripts": {
