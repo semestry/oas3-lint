@@ -21,6 +21,6 @@
     "build": "ncc build index.js --license licenses.txt"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.33.4"
+    "@vercel/ncc": "^0.34.0"
   }
 }
