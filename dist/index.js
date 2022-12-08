@@ -67680,7 +67680,7 @@ async function postCheckToGithub(check) {
         sha = github.context.sha;
     }
 
-    let response = await octokit.checks.create({
+    let response = await octokit.rest.checks.create({
         owner: github.context.repo.owner,
         repo: github.context.repo.repo,
         name: "Spectral linting report",
@@ -67698,7 +67698,7 @@ async function postCheckToGithub(check) {
         let annotationsBatch = annotations.slice(0, 50);
         annotations = annotations.slice(50);
 
-        await octokit.checks.update({
+        await octokit.rest.checks.update({
             owner: github.context.repo.owner,
             repo: github.context.repo.repo,
             check_run_id: response.data.id,
