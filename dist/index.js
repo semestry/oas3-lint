@@ -97009,10 +97009,9 @@ exports.isErrorWithCode = isErrorWithCode;
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
-var __webpack_unused_export__;
 
-__webpack_unused_export__ = ({ value: true });
-exports.i = void 0;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.bundleAndLoadRuleset = void 0;
 const tslib_1 = __nccwpck_require__(4351);
 const module_1 = __nccwpck_require__(98188);
 const path = (0, tslib_1.__importStar)(__nccwpck_require__(13195));
@@ -97030,7 +97029,7 @@ const bundleAndLoadRuleset = async (rulesetFile, io, plugins = []) => {
         source: rulesetFile,
     });
 };
-exports.i = bundleAndLoadRuleset;
+exports.bundleAndLoadRuleset = bundleAndLoadRuleset;
 function load(source, uri) {
     const actualUri = path.isURL(uri) ? uri.replace(/^https?:\//, '') : uri;
     const req = (0, module_1.createRequire)(actualUri);
@@ -108085,46 +108084,6 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__nccwpck_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__nccwpck_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__nccwpck_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__nccwpck_require__.o(definition, key) && !__nccwpck_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__nccwpck_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__nccwpck_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	(() => {
 /******/ 		__nccwpck_require__.nmd = (module) => {
@@ -108140,61 +108099,57 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-"use strict";
-__nccwpck_require__.r(__webpack_exports__);
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(71017);
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nccwpck_require__.n(path__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(57147);
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__nccwpck_require__.n(fs__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(42186);
-/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__nccwpck_require__.n(_actions_core__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_3__ = __nccwpck_require__(95438);
-/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__nccwpck_require__.n(_actions_github__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _stoplight_spectral_core__WEBPACK_IMPORTED_MODULE_7__ = __nccwpck_require__(35596);
-/* harmony import */ var _stoplight_spectral_core__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__nccwpck_require__.n(_stoplight_spectral_core__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _stoplight_spectral_parsers__WEBPACK_IMPORTED_MODULE_4__ = __nccwpck_require__(38429);
-/* harmony import */ var _stoplight_spectral_parsers__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__nccwpck_require__.n(_stoplight_spectral_parsers__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _stoplight_spectral_ruleset_bundler_with_loader__WEBPACK_IMPORTED_MODULE_5__ = __nccwpck_require__(58745);
-/* harmony import */ var _stoplight_spectral_runtime__WEBPACK_IMPORTED_MODULE_6__ = __nccwpck_require__(48135);
-/* harmony import */ var _stoplight_spectral_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__nccwpck_require__.n(_stoplight_spectral_runtime__WEBPACK_IMPORTED_MODULE_6__);
+const path = __nccwpck_require__(71017);
+const fs = __nccwpck_require__(57147);
+const core = __nccwpck_require__(42186);
+const github = __nccwpck_require__(95438);
+
+const { Document, Spectral } = __nccwpck_require__(35596);
+const Parsers = __nccwpck_require__(38429);
+const { bundleAndLoadRuleset } = __nccwpck_require__(58745);
+const { fetch } = __nccwpck_require__(48135);
 
 
 
-
+/*
+import * as path from "path"
+import * as fs from 'fs'
+import * as core from '@actions/core'
+import * as github from '@actions/github'
 //const { Document, Parsers, Spectral, isOpenApiv3 } = require("@stoplight/spectral")
-
-
+import {Spectral, Document} from "@stoplight/spectral-core"
+import * as Parsers from "@stoplight/spectral-parsers"
 //const { bundleAndLoadRuleset} = require("@stoplight/spectral-ruleset-bundler/with-loader/node")
+import { bundleAndLoadRuleset} from "@stoplight/spectral-ruleset-bundler/with-loader"
 
-
-
-
+import { fetch } from "@stoplight/spectral-runtime"
+*/
 
 async function runSpectral(specFile) {
-    const spectral = new _stoplight_spectral_core__WEBPACK_IMPORTED_MODULE_7__.Spectral();
+    const spectral = new Spectral();
     //    spectral.registerFormat("oas3", isOpenApiv3);
 
-    let ruleset = _actions_core__WEBPACK_IMPORTED_MODULE_2__.getInput("ruleset");
+    let ruleset = core.getInput("ruleset");
     if (ruleset) {
-        ruleset = path__WEBPACK_IMPORTED_MODULE_0__.resolve(ruleset);
+        ruleset = path.resolve(ruleset);
     } else {
         ruleset = "spectral:oas";
     }
-    _actions_core__WEBPACK_IMPORTED_MODULE_2__.info(`Loading ruleset: ${ruleset}`);
-    spectral.setRuleset(await (0,_stoplight_spectral_ruleset_bundler_with_loader__WEBPACK_IMPORTED_MODULE_5__/* .bundleAndLoadRuleset */ .i)(ruleset, { fs: fs__WEBPACK_IMPORTED_MODULE_1__, fetch: _stoplight_spectral_runtime__WEBPACK_IMPORTED_MODULE_6__.fetch }));
+    core.info(`Loading ruleset: ${ruleset}`);
+    spectral.setRuleset(await bundleAndLoadRuleset(ruleset, { fs, fetch }));
 
     /*
     const rulesetFilepath = path.join(__dirname, ".spectral.yaml");
     spectral.setRuleset(await bundleAndLoadRuleset(ruleset, { fs, fetch }));
      */
 
-    let input = fs__WEBPACK_IMPORTED_MODULE_1__.readFileSync(specFile).toString();
+    let input = fs.readFileSync(specFile).toString();
 
-    specFile = path__WEBPACK_IMPORTED_MODULE_0__.resolve(specFile);
-    _actions_core__WEBPACK_IMPORTED_MODULE_2__.info(`Running Spectral on spec: ${specFile}`);
-    return spectral.run(new _stoplight_spectral_core__WEBPACK_IMPORTED_MODULE_7__.Document(input, _stoplight_spectral_parsers__WEBPACK_IMPORTED_MODULE_4__.Yaml, specFile));
+    specFile = path.resolve(specFile);
+    core.info(`Running Spectral on spec: ${specFile}`);
+    return spectral.run(new Document(input, Parsers.Yaml, specFile));
 }
 
 function createCheckObject(spectralReport) {
@@ -108206,7 +108161,7 @@ function createCheckObject(spectralReport) {
         let item = spectralReport[i];
 
         let annotation = {
-            path: path__WEBPACK_IMPORTED_MODULE_0__.relative(process.cwd(), item.source).split(path__WEBPACK_IMPORTED_MODULE_0__.sep).join('/'),
+            path: path.relative(process.cwd(), item.source).split(path.sep).join('/'),
             start_line: item.range.start.line,
             end_line: item.range.end.line,
             annotation_level: (() => {
@@ -108248,17 +108203,17 @@ function createCheckObject(spectralReport) {
 }
 
 async function postCheckToGithub(check) {
-    const githubToken = _actions_core__WEBPACK_IMPORTED_MODULE_2__.getInput("token");
-    const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_3__.getOctokit(githubToken);
+    const githubToken = core.getInput("token");
+    const octokit = github.getOctokit(githubToken);
 
-    let sha = _actions_github__WEBPACK_IMPORTED_MODULE_3__.context.payload.pull_request.head.sha;
+    let sha = github.context.payload.pull_request.head.sha;
     if (!sha) {
-        sha = _actions_github__WEBPACK_IMPORTED_MODULE_3__.context.sha;
+        sha = github.context.sha;
     }
 
     let response = await octokit.rest.checks.create({
-        owner: _actions_github__WEBPACK_IMPORTED_MODULE_3__.context.repo.owner,
-        repo: _actions_github__WEBPACK_IMPORTED_MODULE_3__.context.repo.repo,
+        owner: github.context.repo.owner,
+        repo: github.context.repo.repo,
         name: "Spectral linting report",
         head_sha: sha,
         conclusion: check.conclusion,
@@ -108275,8 +108230,8 @@ async function postCheckToGithub(check) {
         annotations = annotations.slice(50);
 
         await octokit.rest.checks.update({
-            owner: _actions_github__WEBPACK_IMPORTED_MODULE_3__.context.repo.owner,
-            repo: _actions_github__WEBPACK_IMPORTED_MODULE_3__.context.repo.repo,
+            owner: github.context.repo.owner,
+            repo: github.context.repo.repo,
             check_run_id: response.data.id,
             output: {
                 title: check.title,
@@ -108289,7 +108244,7 @@ async function postCheckToGithub(check) {
 
 (async () => {
     try {
-        let specFile = _actions_core__WEBPACK_IMPORTED_MODULE_2__.getInput("spec");
+        let specFile = core.getInput("spec");
         if (!specFile) {
             throw new Error("Required parameter 'spec' is missing.");
         }
@@ -108298,11 +108253,11 @@ async function postCheckToGithub(check) {
         let spectralReport = await runSpectral(specFile);
 
         // Create a check object from the Spectral report and add it to the GitHub PR.
-        _actions_core__WEBPACK_IMPORTED_MODULE_2__.info("Creating check with annotations from Spectral.");
+        core.info("Creating check with annotations from Spectral.");
         let check = createCheckObject(spectralReport);
         await postCheckToGithub(check);
     } catch (error) {
-        _actions_core__WEBPACK_IMPORTED_MODULE_2__.setFailed(error.message);
+        core.setFailed(error.message);
     }
 })();
 

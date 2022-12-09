@@ -1,15 +1,12 @@
-import * as path from "path"
-import * as fs from 'fs'
-import * as core from '@actions/core'
-import * as github from '@actions/github'
-//const { Document, Parsers, Spectral, isOpenApiv3 } = require("@stoplight/spectral")
-import {Spectral, Document} from "@stoplight/spectral-core"
-import * as Parsers from "@stoplight/spectral-parsers"
-//const { bundleAndLoadRuleset} = require("@stoplight/spectral-ruleset-bundler/with-loader/node")
-import { bundleAndLoadRuleset} from "@stoplight/spectral-ruleset-bundler/with-loader"
+const path = require("path");
+const fs = require("fs");
+const core = require('@actions/core');
+const github = require('@actions/github');
 
-import { fetch } from "@stoplight/spectral-runtime"
-
+const { Document, Spectral } = require("@stoplight/spectral-core");
+const Parsers = require("@stoplight/spectral-parsers");
+const { bundleAndLoadRuleset } = require("@stoplight/spectral-ruleset-bundler/with-loader");
+const { fetch } = require("@stoplight/spectral-runtime");
 
 async function runSpectral(specFile) {
     const spectral = new Spectral();
