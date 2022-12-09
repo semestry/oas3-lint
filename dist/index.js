@@ -108111,22 +108111,6 @@ const Parsers = __nccwpck_require__(38429);
 const { bundleAndLoadRuleset } = __nccwpck_require__(58745);
 const { fetch } = __nccwpck_require__(48135);
 
-
-
-/*
-import * as path from "path"
-import * as fs from 'fs'
-import * as core from '@actions/core'
-import * as github from '@actions/github'
-//const { Document, Parsers, Spectral, isOpenApiv3 } = require("@stoplight/spectral")
-import {Spectral, Document} from "@stoplight/spectral-core"
-import * as Parsers from "@stoplight/spectral-parsers"
-//const { bundleAndLoadRuleset} = require("@stoplight/spectral-ruleset-bundler/with-loader/node")
-import { bundleAndLoadRuleset} from "@stoplight/spectral-ruleset-bundler/with-loader"
-
-import { fetch } from "@stoplight/spectral-runtime"
-*/
-
 async function runSpectral(specFile) {
     const spectral = new Spectral();
     //    spectral.registerFormat("oas3", isOpenApiv3);
