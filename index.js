@@ -8,12 +8,8 @@ const Parsers = require("@stoplight/spectral-parsers");
 const { bundleAndLoadRuleset } = require("@stoplight/spectral-ruleset-bundler/with-loader");
 const { fetch } = require("@stoplight/spectral-runtime");
 
-require("@stoplight/spectral-rulesets");
-
-
 async function runSpectral(specFile) {
     const spectral = new Spectral();
-    //    spectral.registerFormat("oas3", isOpenApiv3);
 
     let ruleset = core.getInput("ruleset");
     if (ruleset) {
@@ -23,11 +19,6 @@ async function runSpectral(specFile) {
     }
     core.info(`Loading ruleset: ${ruleset}`);
     spectral.setRuleset(await bundleAndLoadRuleset(ruleset, { fs, fetch }));
-
-    /*
-    const rulesetFilepath = path.join(__dirname, ".spectral.yaml");
-    spectral.setRuleset(await bundleAndLoadRuleset(ruleset, { fs, fetch }));
-     */
 
     let input = fs.readFileSync(specFile).toString();
 
