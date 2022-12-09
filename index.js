@@ -8,6 +8,9 @@ const Parsers = require("@stoplight/spectral-parsers");
 const { bundleAndLoadRuleset } = require("@stoplight/spectral-ruleset-bundler/with-loader");
 const { fetch } = require("@stoplight/spectral-runtime");
 
+require("@stoplight/spectral-rulesets");
+
+
 async function runSpectral(specFile) {
     const spectral = new Spectral();
     //    spectral.registerFormat("oas3", isOpenApiv3);
