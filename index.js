@@ -1,12 +1,19 @@
-const path = require("path");
-const fs = require("fs");
-const core = require('@actions/core');
-const github = require('@actions/github');
-const { Document, Parsers, Spectral, isOpenApiv3 } = require("@stoplight/spectral")
+import * as path from "path"
+import * as fs from 'fs'
+import * as core from '@actions/core'
+import * as github from '@actions/github'
+//const { Document, Parsers, Spectral, isOpenApiv3 } = require("@stoplight/spectral")
+import {Spectral, Document} from "@stoplight/spectral-core"
+import * as Parsers from "@stoplight/spectral-parsers"
+//const { bundleAndLoadRuleset} = require("@stoplight/spectral-ruleset-bundler/with-loader/node")
+import { bundleAndLoadRuleset} from "@stoplight/spectral-ruleset-bundler/with-loader"
+
+import { fetch } from "@stoplight/spectral-runtime"
+
 
 async function runSpectral(specFile) {
     const spectral = new Spectral();
-    spectral.registerFormat("oas3", isOpenApiv3);
+    //    spectral.registerFormat("oas3", isOpenApiv3);
 
     let ruleset = core.getInput("ruleset");
     if (ruleset) {
@@ -15,7 +22,12 @@ async function runSpectral(specFile) {
         ruleset = "spectral:oas";
     }
     core.info(`Loading ruleset: ${ruleset}`);
-    await spectral.loadRuleset(ruleset);
+    spectral.setRuleset(await bundleAndLoadRuleset(ruleset, { fs, fetch }));
+
+    /*
+    const rulesetFilepath = path.join(__dirname, ".spectral.yaml");
+    spectral.setRuleset(await bundleAndLoadRuleset(ruleset, { fs, fetch }));
+     */
 
     let input = fs.readFileSync(specFile).toString();
 
