@@ -2,11 +2,14 @@ const path = require("path");
 const fs = require("fs");
 const core = require('@actions/core');
 const github = require('@actions/github');
-const { Document, Parsers, Spectral, isOpenApiv3 } = require("@stoplight/spectral")
+
+const { Document, Spectral } = require("@stoplight/spectral-core");
+const Parsers = require("@stoplight/spectral-parsers");
+const { bundleAndLoadRuleset } = require("@stoplight/spectral-ruleset-bundler/with-loader");
+const { fetch } = require("@stoplight/spectral-runtime");
 
 async function runSpectral(specFile) {
     const spectral = new Spectral();
-    spectral.registerFormat("oas3", isOpenApiv3);
 
     let ruleset = core.getInput("ruleset");
     if (ruleset) {
@@ -15,7 +18,7 @@ async function runSpectral(specFile) {
         ruleset = "spectral:oas";
     }
     core.info(`Loading ruleset: ${ruleset}`);
-    await spectral.loadRuleset(ruleset);
+    spectral.setRuleset(await bundleAndLoadRuleset(ruleset, { fs, fetch }));
 
     let input = fs.readFileSync(specFile).toString();
 
@@ -83,7 +86,7 @@ async function postCheckToGithub(check) {
         sha = github.context.sha;
     }
 
-    let response = await octokit.checks.create({
+    let response = await octokit.rest.checks.create({
         owner: github.context.repo.owner,
         repo: github.context.repo.repo,
         name: "Spectral linting report",
@@ -101,7 +104,7 @@ async function postCheckToGithub(check) {
         let annotationsBatch = annotations.slice(0, 50);
         annotations = annotations.slice(50);
 
-        await octokit.checks.update({
+        await octokit.rest.checks.update({
             owner: github.context.repo.owner,
             repo: github.context.repo.repo,
             check_run_id: response.data.id,
